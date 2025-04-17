@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from '../../services/usuario.service';
 import { User } from '../../models/User';
 import { Router } from '@angular/router';
+import * as CryptoJS from 'crypto-js';
 
 
 @Component({
@@ -37,14 +38,17 @@ export class LoginComponent implements OnInit{
 
   // Function to handle the form submission
   onSubmit(): void {
+    const hashedPassword = CryptoJS.SHA256(this.loginForm.value.password).toString(CryptoJS.enc.Base64)
     if (this.loginForm.valid) {
       console.log('Form Submitted', this.loginForm.value);
       const foundUser = this.users.find(
-        user => user.email == this.loginForm.value.email && user.password == this.loginForm.value.password
+        user => user.email == this.loginForm.value.email && user.password == hashedPassword
       );
       console.log(foundUser)
-      if (foundUser)
+      if (foundUser){
+        localStorage.setItem('id', foundUser.id.toString())
         alert(`Bem vindo ${foundUser.name}`)
+      }
       else
         alert('nao deu')
       this.router.navigate(['/']);

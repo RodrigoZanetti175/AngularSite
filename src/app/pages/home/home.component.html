@@ -1,3 +1,21 @@
 <div class="container">
-<h1>Bem vindo(a)!</h1>
+    <h1>Bem vindo(a)!</h1>
+    <div *ngIf="hasId" class="manager">
+        <table>
+           <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th></th>
+            <th></th>
+           </tr>
+           <tr *ngFor="let user of users">
+             <td>{{user.id}}</td>
+             <td>{{user.name}}</td>
+             <td>{{user.email}}</td>
+             <td><button>Editar</button></td>
+             <td><button class="ex">Excluir</button></td>
+           </tr>
+        </table>
+    </div>
 </div>

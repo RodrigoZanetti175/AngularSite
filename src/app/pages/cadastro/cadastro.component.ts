@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { User } from '../../models/User';
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
+import * as CryptoJS from 'crypto-js';
+
 
 @Component({
   selector: 'app-cadastro',
@@ -37,7 +39,7 @@ export class CadastroComponent {
   onSubmit() : void{
       this.newUser.name = this.cadastroForm.value.nome
       this.newUser.email = this.cadastroForm.value.email
-      this.newUser.password = this.cadastroForm.value.password
+      this.newUser.password = CryptoJS.SHA256(this.cadastroForm.value.password).toString(CryptoJS.enc.Base64)
       this.userService.Cadastro(this.newUser).subscribe(response=>{
         if(!response.sucesso)
           alert(response.mensagem)
@@ -47,6 +49,5 @@ export class CadastroComponent {
           this.router.navigate(['/login'])
         }
       })
-
   }
 }

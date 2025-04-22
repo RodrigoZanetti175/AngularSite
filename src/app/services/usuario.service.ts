@@ -20,4 +20,13 @@ export class UsuarioService {
   Cadastro(user : User) : Observable<requestResponse<User[]>>{
     return this.http.post<requestResponse<User[]>>(this.api, user)
   }
+
+  Excluir(id : number) : Observable<requestResponse<User[]>>{
+    const params = new HttpParams().set('id', id);
+    return this.http.delete<requestResponse<User[]>>(this.api, { params });
+  }
+
+  Editar(user : User) : Observable<requestResponse<User[]>>{
+    return this.http.put<requestResponse<User[]>>(this.api, user)
+  }
 }

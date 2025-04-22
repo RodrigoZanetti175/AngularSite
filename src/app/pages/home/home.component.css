@@ -66,4 +66,30 @@
   button.ex:hover {
     background-color: #d32f2f;
   }
+
+  /* Input styles inside table */
+table input[type="text"] {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 0.95em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fdfdfd;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+/* Highlight on focus */
+table input[type="text"]:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 3px rgba(0, 123, 255, 0.4);
+  outline: none;
+  background-color: #fff;
+}
+
+/* Optional: Slight background to show it's editable */
+table td input[type="text"] {
+  background-color: #f9f9f9;
+}
+
   

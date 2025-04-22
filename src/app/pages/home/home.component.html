@@ -11,10 +11,20 @@
            </tr>
            <tr *ngFor="let user of users">
              <td>{{user.id}}</td>
-             <td>{{user.name}}</td>
-             <td>{{user.email}}</td>
-             <td><button>Editar</button></td>
-             <td><button class="ex">Excluir</button></td>
+             <td>
+              <input 
+                type="text" 
+                [(ngModel)]="user.name" 
+                [name]="'name' + user.id" />
+             </td>
+             <td>
+              <input 
+              type="text" 
+              [(ngModel)]="user.email" 
+              [name]="'email' + user.id" />
+             </td>
+             <td><button (click)="editar(user)">Editar</button></td>
+             <td><button class="ex" (click)="excluir(user.id)">Excluir</button></td>
            </tr>
         </table>
     </div>

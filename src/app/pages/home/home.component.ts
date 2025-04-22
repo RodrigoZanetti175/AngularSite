@@ -11,6 +11,7 @@ import { UsuarioService } from '../../services/usuario.service';
 export class HomeComponent implements OnInit {
   hasId: boolean = false;
   users : User[] = []
+  name : string = ""
 
   constructor(private userService : UsuarioService){}
 
@@ -25,5 +26,17 @@ export class HomeComponent implements OnInit {
         this.users = response.dados
       })
     }
+  }
+
+  excluir(id : number){
+    console.log(id)
+    this.userService.Excluir(id).subscribe()
+    window.location.reload()
+  }
+
+  editar(user : User){
+    console.log(user)
+    this.userService.Editar(user).subscribe(response=>console.log(response))
+    window.location.reload()
   }
 }
